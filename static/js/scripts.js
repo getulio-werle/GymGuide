@@ -157,12 +157,12 @@ async function fetchListasTreinos() {
 
 async function exibirListaTreinos() {
     try {
-        console.log('entrou na f lista')
+
         const listas_treinos = await fetchListasTreinos();
         const lista_lista_treinos = document.querySelector('ul#lista-lista_treinos');     // Tag que reúne todas as "Listas de Treinos"
 
         for (const lista_treinos of listas_treinos) {
-            console.log('entrou no for 1')
+
             //const ulId = `lista-exercicio-generico-${grupoMuscular.cod_grupo_musculo}`;
             lista_lista_treinos.innerHTML +=
                 `   
@@ -184,7 +184,7 @@ async function exibirListaTreinos() {
             const lista_treino = document.querySelector(`#lista-treino-${lista_treinos.cod_lista_treinos}`);    // Tag que reúne todos os treinos de cada "Lista de Treinos"
 
             for (const um_treino of treinos) {
-                console.log('entrou no for 2')
+
                 lista_treino.innerHTML +=
                     `
                     <div class="treino">
@@ -207,7 +207,7 @@ async function exibirListaTreinos() {
                 const treino = document.querySelector(`#lista-exercicio-treino-${um_treino.cod_treino}`);    // Tag que reúne todos os exercícios de cada "Treino"
 
                 for (const exercicio_treino of exercicios_treinos) {
-                    console.log('entrou no for 3')
+                    if (exercicio_treino.observacao == null) {exercicio_treino.observacao = ''}
                     if (exercicio_treino.aparelho != null) {
                         if (exercicio_treino.series != null || exercicio_treino.repeticoes != null) {
                             treino.innerHTML +=

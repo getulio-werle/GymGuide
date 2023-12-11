@@ -380,6 +380,8 @@ def editarExercicioTreino(id):
         url = f'http://localhost:8080/grupo_musculo/{exercicio_generico["cod_grupo_musculo"]}'
         grupo_musculo = requests.get(url)
         grupo_musculo = grupo_musculo.json()
+        if exercicio_treino['observacao'] == None:
+            exercicio_treino['observacao'] = ''
         return render_template('treinos.html', exercicio_treino=exercicio_treino, 
                                exercicio_generico_editar_exercicio_treino=exercicio_generico, grupo_musculo_editar_exercicio_treino=grupo_musculo,
                                 operacao='editar')

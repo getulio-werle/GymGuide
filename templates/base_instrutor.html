@@ -400,14 +400,16 @@
                     <label for="exercicio">Exercício</label>
                     <select name="exercicio-generico-editar-exercicio-treino"
                         id="exercicio-generico-editar-exercicio-treino" required readonly>
-                            <option value="{{ exercicio_generico_editar_exercicio_treino.cod_exercicio }}">[{{ exercicio_generico_editar_exercicio_treino.aparelho }}]
-                                {{ grupo_musculo_editar_exercicio_treino.nome }} {{ exercicio_generico_editar_exercicio_treino.nome }}</option>
+                        <option value="{{ exercicio_generico_editar_exercicio_treino.cod_exercicio }}">[{{
+                            exercicio_generico_editar_exercicio_treino.aparelho }}]
+                            {{ grupo_musculo_editar_exercicio_treino.nome }} {{
+                            exercicio_generico_editar_exercicio_treino.nome }}</option>
                     </select>
                 </div>
                 <div>
                     <label for="series-editar-exercicio-treino">Séries</label>
-                    <input type="number" name="series-editar-exercicio-treino"
-                        id="series-editar-exercicio-treino" value="{{ exercicio_treino.series }}">
+                    <input type="number" name="series-editar-exercicio-treino" id="series-editar-exercicio-treino"
+                        value="{{ exercicio_treino.series }}">
                 </div>
                 <div>
                     <label for="repeticoes-editar-exercicio-treino">Repetições</label>
@@ -416,8 +418,8 @@
                 </div>
                 <div>
                     <label for="observacao-editar-exercicio-treino">Observação</label>
-                    <input type="text" name="observacao-editar-exercicio-treino"
-                        id="observacao-editar-exercicio-treino" value="{{ exercicio_treino.observacao }}">
+                    <input type="text" name="observacao-editar-exercicio-treino" id="observacao-editar-exercicio-treino"
+                        value="{{ exercicio_treino.observacao }}">
                 </div>
             </form>
             <div class="espaco-botao">
@@ -428,43 +430,6 @@
         </dialog>
     </div>
     {% endif %}
-
-    <!-- Modal Editar exercício -->
-    <dialog class="modal" id="modal-editar-exercicio">
-        <h1>Editar exercício</h1>
-        <form class="formulario-modal" action="" id="formulario-modal-editar-exercicio">
-            <div>
-                <label for="exercicio">Exercício</label>
-                <select name="exercicio" id="exercicio" required>
-                    <optgroup label="Bíceps">
-                        <option value="">[12] Bíceps rosca direta com barra</option>
-                    </optgroup>
-                    <optgroup label="Peito">
-                        <option value="">[05] Peito Supino inclinado com barra</option>
-                        <option value="">[43] Peito Supino Reto com Halteres</option>
-                    </optgroup>
-                </select>
-            </div>
-            <div>
-                <label for="series">Séries</label>
-                <input type="number" name="series" id="series">
-            </div>
-            <div>
-                <label for="repeticoes">Repetições</label>
-                <input type="number" name="repeticoes" id="repeticoes">
-            </div>
-            <div>
-                <label for="observacao">Observação</label>
-                <input type="text" name="observacao" id="observacao">
-            </div>
-        </form>
-        <div class="espaco-botao">
-            <button class="botao-secundario" class="botao" type="button"
-                onclick="closeModal('#modal-editar-exercicio')">Voltar</button>
-            <button class="botao-primario" class="botao" type="submit" onsubmit=""
-                form="formulario-modal-editar-exercicio">Salvar</button>
-        </div>
-    </dialog>
 
     {% if exercicio_treino != undefined and operacao == 'excluir' %}
     <div class="fundo-modal">
@@ -509,14 +474,12 @@
     <dialog class="modal" id="modal-sobre">
         <i class="fi fi-rr-cross icone-fechar-modal" onclick="closeModal('#modal-sobre')"></i>
         <h2 class="titulo-modal" id="titulo-modal-contato">Sobre</h2>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi quae sint exercitationem sit voluptates
-            pariatur ab a, soluta dolorem ducimus beatae, quos voluptatibus numquam. Repellat officiis asperiores
-            optio
-            nisi ullam.</p>
+        <p>O Gym Guide propõe-se a ser uma ferramenta facilitadora na criação e gerenciamento de listas de treinos
+            personalizados por parte dos instrutores, proporcionando uma abordagem intuitiva e eficiente.</p>
         <h3>CNPJ</h3>
         <p>000.000.000/0001-00</p>
         <p>Uicons do <a href="https://www.flaticon.com/uicons">Flaticon</a></p>
-        <p>&copy;Equipe Gym Guide</p>
+        <p>&copy;Equipe Gym Guide: Alexandrino, Arthur, Getúlio e Henrique.</p>
     </dialog>
 </body>
 
