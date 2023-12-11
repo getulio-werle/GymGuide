@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}Template base{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</head>
+
+<body>
+    <!-- Cabeçalho do site -->
+    <header class="header">
+        <a href="#" onclick="abrirMenu()"><img class="icon" src="{{ url_for('static', filename='img/icone-menu.png') }}"
+                alt="Menu"></a>
+        <a href="/home_aluno"><img class="logo" src="{{ url_for('static', filename='img/logo.png') }}"
+                alt="Logo"></a>
+        <img class="icon" src="{{ url_for('static', filename='img/icone-usuario.png') }}" alt="Usuário"
+            onclick="openModal('#modal-usuario')">
+    </header>
+    <!-- Menu lateral -->
+    <nav id="menu">
+        <a href="/home_aluno"><img src="{{ url_for('static', filename='img/home.png') }}"
+                alt="consultar">Início</a>
+        <a href="/meus_treinos"><img src="{{ url_for('static', filename='img/icone-treinos.png') }}"
+                alt="treinos">Meus Treinos</a>
+        <a onclick="openModal('#modal-contato')"><img src="{{ url_for('static', filename='img/icone-contato.png') }}"
+                alt="contato">Contato</a>
+        <a onclick="openModal('#modal-sobre')"><img src="{{ url_for('static', filename='img/icone-sobre.png') }}"
+                alt="Sobre">Sobre</a>
+    </nav>
+    <!-- Conteúdo do site -->
+    <div id="conteudo">
+        {% block conteudo %}{% endblock %}
+    </div>
+
+    <!-- Modal Informações do Usuário -->
+    <dialog class="modal" id="modal-usuario">
+        <i class="fi fi-rr-cross icone-fechar-modal" onclick="closeModal('#modal-usuario')"></i>
+        <h2 class="titulo-modal" id="titulo-modal-usuario">Login</h2>
+        <p id="nome-usuario-modal-usuario">Nome do usuário</p>
+        <button class="botao-secundario" id="botao-sair-modal-usuario">Sair</button>
+        <a href="/meus_dados_aluno"><button class="botao-terciario" id="botao-editar-perfil-modal-usuario">Editar
+                perfil</button></a>
+    </dialog>
+
+    <!-- Modal Informações Contato -->
+    <dialog class="modal" id="modal-contato">
+        <i class="fi fi-rr-cross icone-fechar-modal" onclick="closeModal('#modal-contato')"></i>
+        <h2 class="titulo-modal" id="titulo-modal-contato">Contato</h2>
+        <p>(00)00000-0000</p>
+        <p>(00)00000-0000</p>
+        <a href="#" id="link-instagram-modal-contato"><img src="../static/img/instagram.png">@gymguide</a>
+    </dialog>
+
+    <!-- Modal Sobre -->
+    <dialog class="modal" id="modal-sobre">
+        <i class="fi fi-rr-cross icone-fechar-modal" onclick="closeModal('#modal-sobre')"></i>
+        <h2 class="titulo-modal" id="titulo-modal-contato">Sobre</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi quae sint exercitationem sit voluptates
+            pariatur ab a, soluta dolorem ducimus beatae, quos voluptatibus numquam. Repellat officiis asperiores optio
+            nisi ullam.</p>
+        <h3>CNPJ</h3>
+        <p>000.000.000/0001-00</p>
+        <p>Uicons do <a href="https://www.flaticon.com/uicons">Flaticon</a></p>
+        <p>&copy;Equipe Gym Guide</p>
+    </dialog>
+
+</body>
+
+</html>

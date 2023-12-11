@@ -1,0 +1,59 @@
+{% extends 'base_instrutor.html' %}
+
+{% block titulo %}Meus Dados{% endblock %}
+
+{% block conteudo %}
+<!-- Conteúdo principal -->
+<main>
+  <!-- Área dos dados do usuário -->
+  <div class="box-primaria">
+    <h1>MEUS DADOS</h1>
+    <form action="" class="conteudo-box-primaria" method="POST">
+
+      <div class="conteudo-box-primaria-top">
+
+        <div class="conteudo-box-primaria-top-left">
+          <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" value="Exemplo de nome" readonly>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email@email.com" value="exemplo@email.com" readonly>
+          </div>
+          <div class="form-group">
+            <label for="telefone">Telefone</label>
+            <input type="tel" id="telefone" name="telefone" value="(99)88888-7777">
+          </div>
+          <div class="form-group">
+            <label for="telefone-emergencia">Telefone de emergência</label>
+            <input type="tel" id="telefone-emergencia" name="telefone-emergencia" value="(99)88888-7777">
+          </div>
+          <div class="form-group">
+            <label for="cpf">CPF</label>
+            <input type="number" id="cpf" name="cpf" value="00000000000" readonly>
+          </div>
+          <div class="form-group">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" value="12345678">
+          </div>
+        </div>
+
+        <div class="conteudo-box-primaria-top-right">
+          <div class="foto-perfil">
+            <img src="../static/img/perfil.png" alt="perfil">
+          </div>
+          <div class="botao-input-foto">
+            <label class="foto-label" for="foto-input">Adicionar Foto</label>
+            <input type="file" id="foto-input" name="foto">
+          </div>
+        </div>
+      </div>
+      <div class="espaco-botao">
+        <button class="botao-secundario" class="botao" type="button" onclick='history.go(-1)'>Voltar</button>
+        <button class="botao-primario" class="botao" type="submit" onsubmit="">Salvar</button>
+      </div>
+    </form>
+  </div>
+</main>
+{% endblock %}

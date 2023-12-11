@@ -1,0 +1,237 @@
+{% extends 'base_instrutor.html' %}
+
+{% block titulo %}Dados do Usuário{% endblock %}
+
+{% block conteudo %}
+<!-- Conteúdo principal -->
+<main>
+    <div class="box-primaria">
+        <h1>DADOS DO USUÁRIO</h1>
+        <div class="conteudo-box-primaria" id="config-conteudo-box-primaria-dados-usuario">
+            <!-- Seção que contém informações do usuário -->
+            <form class="conteudo-box-primaria-top">
+                <div class="conteudo-box-primaria-top-left">
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" name="nome" value="Nome" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email@email.com" value="exemplo@email.com" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone" value="(99)88888-7777" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone-emergencia">Telefone de emergência</label>
+                        <input type="tel" id="telefone-emergencia" name="telefone-emergencia" value="(99)88888-7777"
+                            disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="cpf">CPF</label>
+                        <input type="number" id="cpf" name="cpf" value="00000000000" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Rua</label>
+                        <input type="text" id="address" name="address" value="Exemplo de rua" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="number">Número</label>
+                        <input type="number" id="number" name="number" value="4444" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="cep">CEP</label>
+                        <input type="number" id="cep" name="cep" value="99999999" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="bairro">Bairro</label>
+                        <input type="text" id="bairro" name="bairro" value="Exemplo de bairro" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="complemento">Complemento</label>
+                        <input type="text" id="complemento" name="complemento" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">Cidade</label>
+                        <input type="text" id="city" name="city" value="Exemplo de cidade" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">Estado</label>
+                        <input type="text" id="state" name="state" value="XX" disabled>
+                    </div>
+                    <div class="form-group-tipo">
+                        <label><strong>Tipo:</strong></label>
+                        <label>
+                            <input type="radio" name="type" value="aluno" checked disabled>Aluno
+                        </label>
+                        <label>
+                            <input type="radio" name="type" value="professor" disabled>Professor
+                        </label>
+                    </div>
+                </div>
+                <div class="conteudo-box-primaria-top-right">
+                    <div class="foto-perfil">
+                        <img src="../static/img/perfil.png" alt="perfil">
+                    </div>
+                    <button class="botao-bloquear-usuario" type="button"
+                        onclick="openModal('#modal-pergunta-bloquear-usuario')">Bloquear usuário</button>
+                    <button class="botao-excluir-usuario" type="button"
+                        onclick="openModal('#modal-pergunta-excluir')">Excluir usuário</button>
+                    <div class="dados-vencimento-status">
+                        <p>Vencimento: <br>
+                            00/00/0000</p>
+                        <p class="status">Status: Pago</p>
+                    </div>
+                    <a href="/atualizar_pagamento"><button type="button"
+                            class="botao-atualizar-pagamento-usuario">Atualizar pagamento</button></a>
+                </div>
+            </form>
+
+            <!-- Seção que contém as lista de treinos cadastrados para o aluno -->
+            <h1>LISTA DE TREINOS DO ALUNO</h1>
+            <div id="conteudo-lista-treino-dados-usuario">
+                <div class="opcoes-lista-treino">
+                    <h2 class="nome-lista-treino">INICIANTE</h2>
+                    <div class="botao-opcoes-group">
+                        <div class="botao-opcoes-group">
+                            <button class="botao-adicionar" onclick="openModal('#modal-adicionar-treino')"><i
+                                    class="fi fi-rr-plus"></i></button>
+                            <button class="botao-editar" onclick="openModal('#modal-editar-lista-treino')"><i
+                                    class="fi fi-rr-pencil"></i></button>
+                            <button class="botao-excluir" onclick="openModal('#modal-pergunta-excluir')"><i
+                                    class="fi fi-rr-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="lista-treino">
+                    <div class="treino">
+                        <div class="opcoes-treino">
+                            <h2>• TREINO I</h2>
+                            <div class="botao-opcoes-group">
+                                <button class="botao-adicionar" onclick="openModal('#modal-adicionar-exercicio')"><i
+                                        class="fi fi-rr-plus"></i></button>
+                                <button class="botao-editar" onclick="openModal('#modal-editar-treino')"><i
+                                        class="fi fi-rr-pencil"></i></button>
+                                <button class="botao-excluir" onclick="openModal('#modal-pergunta-excluir')"><i
+                                        class="fi fi-rr-trash"></i></button>
+                            </div>
+                        </div>
+                        <ul>
+                            <div class="opcoes-exercicio">
+                                <button class="botao-editar" onclick="openModal('#modal-editar-exercicio')"><i
+                                        class="fi fi-rr-pencil"></i></button>
+                                <button class="botao-excluir" onclick="openModal('#modal-pergunta-excluir')"><i
+                                        class="fi fi-rr-trash"></i></button>
+                                <li>[12]Bíceps rosca direta com barra (03x15)</li>
+                            </div>
+                            <div class="opcoes-exercicio">
+                                <button class="botao-editar" onclick="openModal('#modal-editar-exercicio')"><i
+                                        class="fi fi-rr-pencil"></i></button>
+                                <button class="botao-excluir" onclick="openModal('#modal-pergunta-excluir')"><i
+                                        class="fi fi-rr-trash"></i></button>
+                                <li>[12]Bíceps rosca direta com barra (03x15)</li>
+                            </div>
+                            <div class="opcoes-exercicio">
+                                <button class="botao-editar" onclick="openModal('#modal-editar-exercicio')"><i
+                                        class="fi fi-rr-pencil"></i></button>
+                                <button class="botao-excluir" onclick="openModal('#modal-pergunta-excluir')"><i
+                                        class="fi fi-rr-trash"></i></button>
+                                <li>[05]Supino inclinado com barra (03x15)</li>
+                            </div>
+                            <div class="opcoes-exercicio">
+                                <button class="botao-editar" onclick="openModal('#modal-editar-exercicio')"><i
+                                        class="fi fi-rr-pencil"></i></button>
+                                <button class="botao-excluir" onclick="openModal('#modal-pergunta-excluir')"><i
+                                        class="fi fi-rr-trash"></i></button>
+                                <li>[43]Supino Reto com Halteres (03x15)</li>
+                            </div>
+                            <div class="opcoes-exercicio">
+                                <button class="botao-editar" onclick="openModal('#modal-editar-exercicio')"><i
+                                        class="fi fi-rr-pencil"></i></button>
+                                <button class="botao-excluir" onclick="openModal('#modal-pergunta-excluir')"><i
+                                        class="fi fi-rr-trash"></i></button>
+                                <li>[32]Supino reto com barra (04x12)</li>
+                            </div>
+                            <div class="opcoes-exercicio">
+                                <button class="botao-editar" onclick="openModal('#modal-editar-exercicio')"><i
+                                        class="fi fi-rr-pencil"></i></button>
+                                <button class="botao-excluir" onclick="openModal('#modal-pergunta-excluir')"><i
+                                        class="fi fi-rr-trash"></i></button>
+                                <li>[11]Barra (3x10)</li>
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="treino">
+                        <div class="opcoes-treino">
+                            <h2>• TREINO II</h2>
+                            <div class="botao-opcoes-group">
+                                <button class="botao-adicionar" onclick="openModal('#modal-adicionar-exercicio')"><i
+                                        class="fi fi-rr-plus"></i></button>
+                                <button class="botao-editar" onclick="openModal('#modal-editar-treino')"><i
+                                        class="fi fi-rr-pencil"></i></button>
+                                <button class="botao-excluir" onclick="openModal('#modal-pergunta-excluir')"><i
+                                        class="fi fi-rr-trash"></i></button>
+                            </div>
+                        </div>
+                        <ul>
+                            <div class="opcoes-exercicio">
+                                <button class="botao-editar" onclick="openModal('#modal-editar-exercicio')"><i
+                                        class="fi fi-rr-pencil"></i></button>
+                                <button class="botao-excluir" onclick="openModal('#modal-pergunta-excluir')"><i
+                                        class="fi fi-rr-trash"></i></button>
+                                <li>[12]Bíceps rosca direta com barra (03x15)</li>
+                            </div>
+                            <div class="opcoes-exercicio">
+                                <button class="botao-editar" onclick="openModal('#modal-editar-exercicio')"><i
+                                        class="fi fi-rr-pencil"></i></button>
+                                <button class="botao-excluir" onclick="openModal('#modal-pergunta-excluir')"><i
+                                        class="fi fi-rr-trash"></i></button>
+                                <li>[12]Bíceps rosca direta com barra (03x15)</li>
+                            </div>
+                            <div class="opcoes-exercicio">
+                                <button class="botao-editar" onclick="openModal('#modal-editar-exercicio')"><i
+                                        class="fi fi-rr-pencil"></i></button>
+                                <button class="botao-excluir" onclick="openModal('#modal-pergunta-excluir')"><i
+                                        class="fi fi-rr-trash"></i></button>
+                                <li>[05]Supino inclinado com barra (03x15)</li>
+                            </div>
+                            <div class="opcoes-exercicio">
+                                <button class="botao-editar" onclick="openModal('#modal-editar-exercicio')"><i
+                                        class="fi fi-rr-pencil"></i></button>
+                                <button class="botao-excluir" onclick="openModal('#modal-pergunta-excluir')"><i
+                                        class="fi fi-rr-trash"></i></button>
+                                <li>[43]Supino Reto com Halteres (03x15)</li>
+                            </div>
+                            <div class="opcoes-exercicio">
+                                <button class="botao-editar" onclick="openModal('#modal-editar-exercicio')"><i
+                                        class="fi fi-rr-pencil"></i></button>
+                                <button class="botao-excluir" onclick="openModal('#modal-pergunta-excluir')"><i
+                                        class="fi fi-rr-trash"></i></button>
+                                <li>[32]Supino reto com barra (04x12)</li>
+                            </div>
+                            <div class="opcoes-exercicio">
+                                <button class="botao-editar" onclick="openModal('#modal-editar-exercicio')"><i
+                                        class="fi fi-rr-pencil"></i></button>
+                                <button class="botao-excluir" onclick="openModal('#modal-pergunta-excluir')"><i
+                                        class="fi fi-rr-trash"></i></button>
+                                <li>[11]Barra (3x10)</li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="espaco-botao-adicionar-lista-ou-grupo-musculo">
+                <button class="botao-adicionar-lista-ou-grupo-musculo"
+                    onclick="openModal('#modal-adicionar-lista-treino')"><i class="fi fi-rr-plus"></i>Nova lista
+                    de
+                    treinos</button>
+            </div>
+            <div class="espaco-botao">
+                <button class="botao-secundario" class="botao" type="button" onclick='history.go(-1)'>Voltar</button>
+                <button class="botao-terciario" class="botao" type="button">Próxima página</button>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

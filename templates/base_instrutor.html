@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="api-host" content="{{ config.API_HOST }}">
+    <meta name="api-port" content="{{ config.API_PORT }}">
+    <title>{% block titulo %}Base Instrutor{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</head>
+
+<body>
+    <!-- Cabeçalho do site -->
+    <header class="header">
+        <a href="#" onclick="abrirMenu()"><img class="icon" src="{{ url_for('static', filename='img/icone-menu.png') }}"
+                alt="Menu"></a>
+        <a href="/home_instrutor"><img class="logo" src="{{ url_for('static', filename='img/logo.png') }}"
+                alt="Logo"></a>
+        <img class="icon" src="{{ url_for('static', filename='img/icone-usuario.png') }}" alt="Usuário"
+            onclick="openModal('#modal-usuario')">
+    </header>
+    <!-- Menu lateral -->
+    <nav id="menu">
+        <a href="/home_instrutor"><img src="{{ url_for('static', filename='img/home.png') }}" alt="consultar">Início</a>
+        <a href="/consulta"><img src="{{ url_for('static', filename='img/icone-lupa.png') }}"
+                alt="consultar">Consultar</a>
+        <a href="/cadastro"><img src="{{ url_for('static', filename='img/icone-cadastrar.png') }}"
+                alt="cadastrar">Cadastrar</a>
+        <a href="/exercicios"><img src="{{ url_for('static', filename='img/icone-exercicios.png') }}"
+                alt="exercícios">Exercícios</a>
+        <a href="treinos"><img src="{{ url_for('static', filename='img/icone-treinos.png') }}" alt="treinos">Treinos</a>
+        <a onclick="openModal('#modal-contato')"><img src="{{ url_for('static', filename='img/icone-contato.png') }}"
+                alt="contato">Contato</a>
+        <a onclick="openModal('#modal-sobre')"><img src="{{ url_for('static', filename='img/icone-sobre.png') }}"
+                alt="Sobre">Sobre</a>
+    </nav>
+    <!-- Conteúdo do site -->
+    <div id="conteudo">
+        {% block conteudo %}{% endblock %}
+    </div>
+
+    {% if operacao == 'adicionar' and grupo_musculo != undefined %}
+    <!-- Modal Adicionar Grupo Musculo -->
+    <div class="fundo-modal">
+        <dialog class="modal" id="modal-adicionar-grupo-musculo" open>
+            <h1>Adicionar novo grupo muscular</h1>
+            <form class="formulario-modal" action="" id="formulario-modal-adicionar-grupo-musculo" method="POST">
+                <label for="nome-grupo-musculo-adicionar">Nome do grupo muscular</label>
+                <input type="text" id="nome-grupo-musculo-adicionar" name="nome-grupo-musculo-adicionar" required>
+            </form>
+            <div class="espaco-botao">
+                <a href="/exercicios"><button class="botao-secundario" class="botao" type="button">Voltar</button></a>
+                <button class="botao-primario" id="botao-salvar-formulario-modal-adicionar-grupo-musculo" class="botao"
+                    type="submit" form="formulario-modal-adicionar-grupo-musculo">Salvar</button>
+            </div>
+        </dialog>
+    </div>
+    {% endif %}
+
+    {% if operacao == 'editar' and grupo_musculo != undefined %}
+    <!-- Modal Editar Grupo Musculo -->
+    <div class="fundo-modal">
+        <dialog class="modal" id="modal-editar-grupo-musculo" open>
+            <h1>Editar Grupo Muscular</h1>
+            <form class="formulario-modal" action="" id="formulario-modal-editar-grupo-musculo" method="POST">
+                <label for="nome-grupo-musculo-editar">Nome do grupo muscular</label>
+                <input type="text" value="{{ grupo_musculo.nome }}" id="nome-grupo-musculo-editar"
+                    name="nome-grupo-musculo-editar" required>
+            </form>
+            <div class="espaco-botao">
+                <a href="/exercicios"><button class="botao-secundario" class="botao" type="button">Voltar</button></a>
+                <button class="botao-primario" class="botao" type="submit"
+                    form="formulario-modal-editar-grupo-musculo">Salvar</button>
+            </div>
+        </dialog>
+    </div>
+    {% endif %}
+
+    {% if operacao == 'excluir' and grupo_musculo != undefined %}
+    <div class="fundo-modal">
+        <!-- Modal Pergunta para Excluir grupo_musculo-->
+        <dialog class="modal" id="modal-pergunta-excluir-grupo-musculo" open>
+            <div class="conjunto-titulo-modal-pergunta-excluir-bloquear-usuario">
+                <i class="fi fi-rr-triangle-warning"></i>
+                <h2 class="titulo-modal titulo-modal-pergunta-excluir-bloquear-usuario">Atenção</h2>
+            </div>
+            <p>Você tem certeza que deseja excluir "{{ grupo_musculo.nome }}"?</p>
+            <div class="espaco-botao">
+                <a href="/exercicios"><button class="botao-secundario" class="botao" type="button">Voltar</button></a>
+                <a href="/exercicios/excluir/grupo_musculo/{{ grupo_musculo.cod_grupo_musculo }}"><button
+                        class="botao-primario" class="botao" type="button"
+                        id="botao-excluir-modal-pergunta-excluir">Excluir</button></a>
+            </div>
+        </dialog>
+    </div>
+    {% endif %}
+
+    {% if operacao == 'adicionar' and grupo_musculo_para_adicionar_exercicio != undefined %}
+    <!-- Modal Adicionar Exercício Genérico -->
+    <div class="fundo-modal">
+        <dialog class="modal" id="modal-adicionar-exercicio-generico" open>
+            <h1>Adicionar exercício</h1>
+            <form class="formulario-modal" action="" id="formulario-modal-adicionar-exercicio-generico" method="POST">
+                <div>
+                    <label for="nome-grupo-musculo-exercicio-generico-adicionar">Nome do grupo muscular</label>
+                    <input type="text" id="nome-grupo-musculo-exercicio-generico-adicionar"
+                        name="nome-grupo-musculo-exercicio-generico-adicionar"
+                        value="{{ grupo_musculo_para_adicionar_exercicio.nome }}" readonly>
+                </div>
+                <div style="display: none;">
+                    <label for="cod-grupo-musculo-exercicio-generico-adicionar">Código do grupo muscular</label>
+                    <input type="number" id="cod-grupo-musculo-exercicio-generico-adicionar"
+                        name="cod-grupo-musculo-exercicio-generico-adicionar"
+                        value="{{ grupo_musculo_para_adicionar_exercicio.cod_grupo_musculo }}" readonly>
+                </div>
+                <div>
+                    <label for="aparelho-exercicio-generico-adicionar">Número do Aparelho</label>
+                    <input type="number" name="aparelho-exercicio-generico-adicionar"
+                        id="aparelho-exercicio-generico-adicionar">
+                </div>
+                <div>
+                    <label for="nome-exercicio-generico-adicionar">Nome do Exercício</label>
+                    <input type="text" name="nome-exercicio-generico-adicionar" id="nome-exercicio-generico-adicionar"
+                        required>
+                </div>
+            </form>
+            <div class="espaco-botao">
+                <a href="/exercicios"><button class="botao-secundario" class="botao" type="button">Voltar</button></a>
+                <button class="botao-primario" class="botao" type="submit"
+                    form="formulario-modal-adicionar-exercicio-generico">Salvar</button>
+            </div>
+        </dialog>
+    </div>
+    {% endif %}
+
+    {% if operacao == 'editar' and exercicio_generico != undefined %}
+    <!-- Modal Editar Exercício Genérico -->
+    <div class="fundo-modal">
+        <dialog class="modal" id="modal-editar-exercicio-generico" open>
+            <h1>Editar exercício</h1>
+            <form class="formulario-modal" id="formulario-modal-editar-exercicio-generico" method="POST">
+                <div style="display: none;">
+                    <label for="cod-grupo-musculo-exercicio-generico-editar">Código do grupo muscular</label>
+                    <input type="number" id="cod-grupo-musculo-exercicio-generico-editar"
+                        name="cod-grupo-musculo-exercicio-generico-editar"
+                        value="{{ exercicio_generico.cod_grupo_musculo }}" readonly>
+                </div>
+                <div>
+                    <label for="aparelho-exercicio-generico-editar">Número do Aparelho</label>
+                    <input type="number" name="aparelho-exercicio-generico-editar"
+                        id="aparelho-exercicio-generico-editar" value="{{ exercicio_generico.aparelho }}">
+                </div>
+                <div>
+                    <label for="nome-exercicio-generico-editar">Nome do Exercício</label>
+                    <input type="text" name="nome-exercicio-generico-editar" id="nome-exercicio-generico-editar"
+                        value="{{ exercicio_generico.nome }}" required>
+                </div>
+            </form>
+            <div class="espaco-botao">
+                <a href="/exercicios"><button class="botao-secundario" class="botao" type="button">Voltar</button></a>
+                <button class="botao-primario" class="botao" type="submit"
+                    form="formulario-modal-editar-exercicio-generico">Salvar</button>
+            </div>
+        </dialog>
+    </div>
+    {% endif %}
+
+    {% if operacao == 'excluir' and exercicio_generico != undefined %}
+    <div class="fundo-modal">
+        <!-- Modal Pergunta para Excluir exercicio_generico -->
+        <dialog class="modal" id="modal-pergunta-excluir" open>
+            <div class="conjunto-titulo-modal-pergunta-excluir-bloquear-usuario">
+                <i class="fi fi-rr-triangle-warning"></i>
+                <h2 class="titulo-modal titulo-modal-pergunta-excluir-bloquear-usuario">Atenção</h2>
+            </div>
+            <p>Você tem certeza que deseja excluir "{{ exercicio_generico.nome }}"?</p>
+            <div class="espaco-botao">
+                <a href="/exercicios"><button class="botao-secundario" class="botao" type="button">Voltar</button></a>
+                <a href="/exercicios/excluir/exercicio_generico/{{ exercicio_generico.cod_exercicio }}"><button
+                        class="botao-primario" class="botao" type="button"
+                        id="botao-excluir-modal-pergunta-excluir">Excluir</button></a>
+            </div>
+        </dialog>
+    </div>
+    {% endif %}
+
+
+    {% if lista_treinos != undefined and operacao == 'adicionar' %}
+    <div class="fundo-modal">
+        <!-- Modal Adicionar lista de treino -->
+        <dialog class="modal" id="modal-adicionar-lista-treino" open>
+            <h1>Adicionar lista de treinos</h1>
+            <div id="espaco-botao-opcoes-modal-adicionar-lista-treino">
+                <a href="/treinos/adicionar/lista_treinos/existente"><button class="botao-secundario">Adicionar
+                        uma lista já existente</button></a>
+                <a href="/treinos/adicionar/lista_treinos/nova"><button class="botao-secundario">Adicionar
+                        nova
+                        lista</button></a>
+            </div>
+            <div class="espaco-botao">
+                <a href="/treinos"><button class="botao-secundario" class="botao" type="button">Voltar</button></a>
+            </div>
+        </dialog>
+    </div>
+    {% endif %}
+
+    {% if lista_treinos != undefined and operacao == 'adicionar-existente' %}
+    <div class="fundo-modal">
+        <!-- Modal Adicionar lista de treino já existente -->
+        <dialog class="modal" id="modal-adicionar-lista-treino-existente" open>
+            <h1>Adicionar lista de treinos</h1>
+            <form class="formulario-modal" id="formulario-modal-adicionar-lista-treino-existente" method="POST">
+                <label for="lista-treino">Nome da lista de treinos</label>
+                <select name="lista-treino-existente-adicionar-lista-treino"
+                    id="lista-treino-existente-adicionar-lista-treino" required>
+                    {% for lista_treinos in listas_treinos %}
+                    <option value="{{ lista_treinos.cod_lista_treinos }}">{{ lista_treinos.nome }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+            <div class="espaco-botao">
+                <a href="/treinos"><button class="botao-secundario" class="botao" type="button">Voltar</button></a>
+                <button class="botao-primario" class="botao" type="submit" onsubmit=""
+                    form="formulario-modal-adicionar-lista-treino-existente">Salvar</button>
+            </div>
+        </dialog>
+    </div>
+    {% endif %}
+
+    {% if lista_treinos != undefined and operacao == 'adicionar-nova' %}
+    <div class="fundo-modal">
+        <!-- Modal Adicionar nova lista de treino -->
+        <dialog class="modal" id="modal-adicionar-nova-lista-treino" open>
+            <h1>Adicionar nova lista de treinos</h1>
+            <form class="formulario-modal" action="" id="formulario-modal-adicionar-nova-lista-treino" method="POST">
+                <label for="lista-treino-adicionar-lista-treino-nova">Nome da nova lista de treinos</label>
+                <input type="text" id="lista-treino-adicionar-lista-treino-nova"
+                    name="lista-treino-adicionar-lista-treino-nova" required>
+            </form>
+            <div class="espaco-botao">
+                <a href="/treinos"><button class="botao-secundario" class="botao" type="button">Voltar</button></a>
+                <button class="botao-primario" class="botao" type="submit"
+                    form="formulario-modal-adicionar-nova-lista-treino">Salvar</button>
+            </div>
+        </dialog>
+    </div>
+    {% endif %}
+
+    {% if lista_treinos != undefined and operacao == 'editar' %}
+    <div class="fundo-modal">
+        <!-- Modal Editar lista de treino -->
+        <dialog class="modal" id="modal-editar-lista-treino" open>
+            <h1>Editar lista de treinos</h1>
+            <form class="formulario-modal" id="formulario-modal-editar-lista-treino" method="POST">
+                <label for="nome-editar-lista-treinos">Nome da lista de treinos</label>
+                <input type="text" id="nome-editar-lista-treinos" name="nome-editar-lista-treinos"
+                    value="{{ lista_treinos.nome }}" required>
+            </form>
+            <div class="espaco-botao">
+                <a href="/treinos"><button class="botao-secundario" class="botao" type="button">Voltar</button></a>
+                <button class="botao-primario" class="botao" type="submit" onsubmit=""
+                    form="formulario-modal-editar-lista-treino">Salvar</button>
+            </div>
+        </dialog>
+    </div>
+    {% endif %}
+
+    {% if lista_treinos != undefined and operacao == 'excluir' %}
+    <div class="fundo-modal">
+        <!-- Modal Pergunta para Excluir -->
+        <dialog class="modal" id="modal-pergunta-excluir-lista-treinos" open>
+            <div class="conjunto-titulo-modal-pergunta-excluir-bloquear-usuario">
+                <i class="fi fi-rr-triangle-warning"></i>
+                <h2 class="titulo-modal titulo-modal-pergunta-excluir-bloquear-usuario">Atenção</h2>
+            </div>
+            <p>Você tem certeza que deseja excluir "{{ lista_treinos.nome }}"?</p>
+            <div class="espaco-botao">
+                <a href="/treinos"><button class="botao-secundario" class="botao" type="button">Voltar</button></a>
+                <a href="/treinos/excluir/lista_treinos/{{ lista_treinos.cod_lista_treinos }}"><button
+                        class="botao-primario" class="botao" type="button"
+                        id="botao-excluir-modal-pergunta-excluir">Excluir</button></a>
+            </div>
+        </dialog>
+    </div>
+    {% endif %}
+
+    {% if treino != undefined and operacao == 'adicionar' %}
+    <div class="fundo-modal">
+        <!-- Modal Adicionar treino -->
+        <dialog class="modal" id="modal-adicionar-treino" open>
+            <h1>Adicionar novo treino</h1>
+            <form class="formulario-modal" id="formulario-modal-adicionar-treino" method="POST">
+                <label for="nome-treino-adicionar-treino">Nome do treino</label>
+                <input type="text" id="nome-treino-adicionar-treino" name="nome-treino-adicionar-treino" required>
+            </form>
+            <div class="espaco-botao">
+                <a href="/treinos"><button class="botao-secundario" class="botao" type="button">Voltar</button></a>
+                <button class="botao-primario" class="botao" type="submit"
+                    form="formulario-modal-adicionar-treino">Salvar</button>
+            </div>
+        </dialog>
+    </div>
+    {% endif %}
+
+    {% if treino != undefined and operacao == 'editar' %}
+    <div class="fundo-modal">
+        <!-- Modal Editar treino -->
+        <dialog class="modal" id="modal-editar-treino" open>
+            <h1>Editar treino</h1>
+            <form class="formulario-modal" action="" id="formulario-modal-editar-treino" method="POST">
+                <label for="nome-treino-editar-treino">Nome do treino</label>
+                <input type="text" id="nome-treino-editar-treino" name="nome-treino-editar-treino"
+                    value="{{ treino.nome }}" required>
+            </form>
+            <div class="espaco-botao">
+                <a href="/treinos"><button class="botao-secundario" class="botao" type="button">Voltar</button></a>
+                <button class="botao-primario" class="botao" type="submit"
+                    form="formulario-modal-editar-treino">Salvar</button>
+            </div>
+        </dialog>
+    </div>
+    {% endif %}
+
+    {% if treino != undefined and operacao == 'excluir' %}
+    <div class="fundo-modal">
+        <!-- Modal Pergunta para Excluir -->
+        <dialog class="modal" id="modal-pergunta-excluir-treino" open>
+            <div class="conjunto-titulo-modal-pergunta-excluir-bloquear-usuario">
+                <i class="fi fi-rr-triangle-warning"></i>
+                <h2 class="titulo-modal titulo-modal-pergunta-excluir-bloquear-usuario">Atenção</h2>
+            </div>
+            <p>Você tem certeza que deseja excluir "{{ treino.nome }}"?</p>
+            <div class="espaco-botao">
+                <a href="/treinos"><button class="botao-secundario" class="botao" type="button">Voltar</button></a>
+                <a href="/treinos/excluir/treino/{{ treino.cod_treino }}"><button class="botao-primario" class="botao"
+                        type="button" id="botao-excluir-modal-pergunta-excluir">Excluir</button></a>
+            </div>
+        </dialog>
+    </div>
+    {% endif %}
+
+    {% if exercicio_treino != undefined and operacao == 'adicionar' %}
+    <div class="fundo-modal">
+        <!-- Modal Adicionar exercício -->
+        <dialog class="modal" id="modal-adicionar-exercicio-treino" open>
+            <h1>Adicionar exercício</h1>
+            <form class="formulario-modal " id="formulario-modal-adicionar-exercicio-treino" method="POST">
+                <div>
+                    <label for="exercicio">Exercício</label>
+                    <select name="exercicio-generico-adicionar-exercicio-treino"
+                        id="exercicio-generico-adicionar-exercicio-treino" required>
+                        {% for grupo_musculo in grupos_musculos %}
+                        <optgroup label="{{ grupo_musculo.nome }}">
+                            {% for exercicio_generico in exercicios_genericos %}
+                            {% if exercicio_generico.cod_grupo_musculo == grupo_musculo.cod_grupo_musculo %}
+                            <option value="{{ exercicio_generico.cod_exercicio }}">[{{ exercicio_generico.aparelho }}]
+                                {{ grupo_musculo.nome }} {{ exercicio_generico.nome }}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </optgroup>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label for="series-adicionar-exercicio-treino">Séries</label>
+                    <input type="number" name="series-adicionar-exercicio-treino"
+                        id="series-adicionar-exercicio-treino">
+                </div>
+                <div>
+                    <label for="repeticoes-adicionar-exercicio-treino">Repetições</label>
+                    <input type="number" name="repeticoes-adicionar-exercicio-treino"
+                        id="repeticoes-adicionar-exercicio-treino">
+                </div>
+                <div>
+                    <label for="observacao-adicionar-exercicio-treino">Observação</label>
+                    <input type="text" name="observacao-adicionar-exercicio-treino"
+                        id="observacao-adicionar-exercicio-treino">
+                </div>
+            </form>
+            <div class="espaco-botao">
+                <a href="/treinos"><button class="botao-secundario" class="botao" type="button">Voltar</button></a>
+                <button class="botao-primario" class="botao" type="submit"
+                    form="formulario-modal-adicionar-exercicio-treino">Salvar</button>
+            </div>
+        </dialog>
+    </div>
+    {% endif %}
+
+    {% if exercicio_treino != undefined and operacao == 'editar' %}
+    <div class="fundo-modal">
+        <!-- Modal Editar exercício -->
+        <dialog class="modal" id="modal-editar-exercicio-treino" open>
+            <h1>Editar exercício</h1>
+            <form class="formulario-modal " id="formulario-modal-editar-exercicio-treino" method="POST">
+                <div>
+                    <label for="exercicio">Exercício</label>
+                    <select name="exercicio-generico-editar-exercicio-treino"
+                        id="exercicio-generico-editar-exercicio-treino" required readonly>
+                            <option value="{{ exercicio_generico_editar_exercicio_treino.cod_exercicio }}">[{{ exercicio_generico_editar_exercicio_treino.aparelho }}]
+                                {{ grupo_musculo_editar_exercicio_treino.nome }} {{ exercicio_generico_editar_exercicio_treino.nome }}</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="series-editar-exercicio-treino">Séries</label>
+                    <input type="number" name="series-editar-exercicio-treino"
+                        id="series-editar-exercicio-treino" value="{{ exercicio_treino.series }}">
+                </div>
+                <div>
+                    <label for="repeticoes-editar-exercicio-treino">Repetições</label>
+                    <input type="number" name="repeticoes-editar-exercicio-treino"
+                        id="repeticoes-editar-exercicio-treino" value="{{ exercicio_treino.repeticoes }}">
+                </div>
+                <div>
+                    <label for="observacao-editar-exercicio-treino">Observação</label>
+                    <input type="text" name="observacao-editar-exercicio-treino"
+                        id="observacao-editar-exercicio-treino" value="{{ exercicio_treino.observacao }}">
+                </div>
+            </form>
+            <div class="espaco-botao">
+                <a href="/treinos"><button class="botao-secundario" class="botao" type="button">Voltar</button></a>
+                <button class="botao-primario" class="botao" type="submit"
+                    form="formulario-modal-editar-exercicio-treino">Salvar</button>
+            </div>
+        </dialog>
+    </div>
+    {% endif %}
+
+    <!-- Modal Editar exercício -->
+    <dialog class="modal" id="modal-editar-exercicio">
+        <h1>Editar exercício</h1>
+        <form class="formulario-modal" action="" id="formulario-modal-editar-exercicio">
+            <div>
+                <label for="exercicio">Exercício</label>
+                <select name="exercicio" id="exercicio" required>
+                    <optgroup label="Bíceps">
+                        <option value="">[12] Bíceps rosca direta com barra</option>
+                    </optgroup>
+                    <optgroup label="Peito">
+                        <option value="">[05] Peito Supino inclinado com barra</option>
+                        <option value="">[43] Peito Supino Reto com Halteres</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div>
+                <label for="series">Séries</label>
+                <input type="number" name="series" id="series">
+            </div>
+            <div>
+                <label for="repeticoes">Repetições</label>
+                <input type="number" name="repeticoes" id="repeticoes">
+            </div>
+            <div>
+                <label for="observacao">Observação</label>
+                <input type="text" name="observacao" id="observacao">
+            </div>
+        </form>
+        <div class="espaco-botao">
+            <button class="botao-secundario" class="botao" type="button"
+                onclick="closeModal('#modal-editar-exercicio')">Voltar</button>
+            <button class="botao-primario" class="botao" type="submit" onsubmit=""
+                form="formulario-modal-editar-exercicio">Salvar</button>
+        </div>
+    </dialog>
+
+    {% if exercicio_treino != undefined and operacao == 'excluir' %}
+    <div class="fundo-modal">
+        <!-- Modal Pergunta para Excluir -->
+        <dialog class="modal" id="modal-pergunta-excluir" open>
+            <div class="conjunto-titulo-modal-pergunta-excluir-bloquear-usuario">
+                <i class="fi fi-rr-triangle-warning"></i>
+                <h2 class="titulo-modal titulo-modal-pergunta-excluir-bloquear-usuario">Atenção</h2>
+            </div>
+            <p>Você tem certeza que deseja excluir "{{ nome_exercicio }}"?</p>
+            <div class="espaco-botao">
+                <a href="/treinos"><button class="botao-secundario" class="botao" type="button">Voltar</button></a>
+                <a href="/treinos/excluir/exercicio_treino/{{ exercicio_treino.cod_exercicio_treino }}"><button
+                        class="botao-primario" class="botao" type="button"
+                        id="botao-excluir-modal-pergunta-excluir">Excluir</button></a>
+            </div>
+        </dialog>
+    </div>
+    {% endif %}
+
+    <!-- Modal Informações do Usuário -->
+    <dialog class="modal" id="modal-usuario">
+        <i class="fi fi-rr-cross icone-fechar-modal" onclick="closeModal('#modal-usuario')"></i>
+        <h2 class="titulo-modal" id="titulo-modal-usuario">Login</h2>
+        <p id="nome-usuario-modal-usuario">Nome do usuário</p>
+        <button class="botao-secundario" id="botao-sair-modal-usuario">Sair</button>
+        <a href="/meus_dados_instrutor"><button class="botao-terciario" id="botao-editar-perfil-modal-usuario">Editar
+                perfil</button></a>
+    </dialog>
+
+    <!-- Modal Informações Contato -->
+    <dialog class="modal" id="modal-contato">
+        <i class="fi fi-rr-cross icone-fechar-modal" onclick="closeModal('#modal-contato')"></i>
+        <h2 class="titulo-modal" id="titulo-modal-contato">Contato</h2>
+        <p>(00)00000-0000</p>
+        <p>(00)00000-0000</p>
+        <a href="#" id="link-instagram-modal-contato"><img
+                src="{{ url_for('static', filename='img/instagram.png') }}">@gymguide</a>
+    </dialog>
+
+    <!-- Modal Sobre -->
+    <dialog class="modal" id="modal-sobre">
+        <i class="fi fi-rr-cross icone-fechar-modal" onclick="closeModal('#modal-sobre')"></i>
+        <h2 class="titulo-modal" id="titulo-modal-contato">Sobre</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi quae sint exercitationem sit voluptates
+            pariatur ab a, soluta dolorem ducimus beatae, quos voluptatibus numquam. Repellat officiis asperiores
+            optio
+            nisi ullam.</p>
+        <h3>CNPJ</h3>
+        <p>000.000.000/0001-00</p>
+        <p>Uicons do <a href="https://www.flaticon.com/uicons">Flaticon</a></p>
+        <p>&copy;Equipe Gym Guide</p>
+    </dialog>
+</body>
+
+</html>

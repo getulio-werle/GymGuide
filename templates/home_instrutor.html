@@ -1,0 +1,27 @@
+{% extends 'base_instrutor.html' %}
+
+{% block titulo %}Home{% endblock %}
+
+{% block conteudo %}
+<!-- Barra de pesquisa -->
+<div class="barra-pesquisa">
+    <input class="campo-pesquisa" type="text" placeholder="O que deseja pesquisar?">
+    <img class="botao-pesquisa" src="../static/img/lupa-m.png" alt="consultar">
+</div>
+
+<!-- Opções do instrutor -->
+<main>
+    <div class="section-card-home">
+        <!-- Atalho para consulta de alunos -->
+        <a href="/consulta" class="card-home">
+            <img src="../static/img/lupa-m.png" alt="lupa" width="100px" height="100px">
+            <h1>Consultar</h1>
+        </a>
+        <!-- Atalho para cadastrar usuários -->
+        <a href="/cadastro" class="card-home">
+            <img src="../static/img/cadastrar.png" alt="cadastrar" width="100px" height="100px">
+            <h1>Cadastrar</h1>
+        </a>
+    </div>
+</main>
+{% endblock %}

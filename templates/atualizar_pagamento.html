@@ -1,0 +1,60 @@
+{% extends 'base_instrutor.html' %}
+
+{% block titulo %}Atualizar Pagamento{% endblock %}
+
+{% block conteudo %}<!-- Conteúdo principal -->
+<main>
+    <div class="box-primaria">
+        <h1>ATUALIZAR PAGAMENTO</h1>
+        <div class="conteudo-box-primaria" id="config-conteudo-box-primaria-dados-usuario">
+            <!-- Seção que contém informações do usuário -->
+            <form class="conteudo-box-primaria-top">
+                <div class="conteudo-box-primaria-top-left">
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" name="nome" value="Nome" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email@email.com" value="exemplo@email.com" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="cpf">CPF</label>
+                        <input type="number" id="cpf" name="cpf" value="00000000000" disabled>
+                    </div>
+                </div>
+                <div class="conteudo-box-primaria-top-right">
+                    <div class="foto-perfil">
+                        <img src="../static/img/perfil.png" alt="perfil">
+                    </div>
+                    <div class="dados-vencimento-status">
+                        <p>Vencimento: <br>
+                            00/00/0000</p>
+                        <p class="status">Status: Pago</p>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Seção que contém as opções da cadastrar/atualizar pagamento do aluno -->
+            <form class="opcoes-atualizacao-pagamento" id="form">
+                <div class="selecao-data-pagamento">
+                    <label for="data-pagamento">Data de pagamento</label>
+                    <input type="date" id="data-pagamento" required>
+                </div>
+                <div class="selecao-plano">
+                    <label for="plano">Plano</label>
+                    <select name="plano" id="plano" required>
+                        <option value="1mes">1 mês</option>
+                        <option value="3meses">3 meses</option>
+                        <option value="12meses">12 meses</option>
+                    </select>
+                </div>
+            </form>
+            <div class="espaco-botao">
+                <button class="botao-secundario" class="botao" type="button" onclick='history.go(-1)'>Voltar</button>
+                <button class="botao-primario" class="botao" type="submit" form="form">Salvar</button>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

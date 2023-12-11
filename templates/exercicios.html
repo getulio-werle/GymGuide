@@ -1,0 +1,39 @@
+{% extends 'base_instrutor.html' %}
+
+{% block titulo %}Exercícios{% endblock %}
+
+{% block conteudo %}
+<!-- Conteúdo do site -->
+<div id="conteudo">
+
+    <!-- Barra de pesquisa -->
+    <div class="barra-pesquisa">
+        <input class="campo-pesquisa" type="text" placeholder="Digite o nome do exercício">
+        <img class="botao-pesquisa" src="{{ url_for('static', filename='img/lupa-m.png') }}" alt="consultar">
+    </div>
+
+    <!-- Conteúdo principal -->
+    <main>
+        <div class="box-primaria">
+            <h1>LISTA DE EXERCÍCIOS</h1>
+            <button onclick="ordenarGrupoMusculo()" class="botao-secundario"
+                style="width: 150px; margin-left: 20px;">Ordenar por nome</button>
+            <div class="conteudo-box-primaria">
+                <ul id="lista-grupo-musculo">
+
+                </ul>
+                <div class="espaco-botao-adicionar-lista-ou-grupo-musculo">
+                    <a href="/exercicios/adicionar/grupo_musculo"><button class="botao-adicionar-lista-ou-grupo-musculo"><i class="fi fi-rr-plus"></i>Novo
+                        grupo
+                        muscular</button></a>
+                </div>
+                <div class="espaco-botao">
+                    <button class="botao-secundario" class="botao" type="button"
+                        onclick='history.go(-1)'>Voltar</button>
+                    <button class="botao-terciario" class="botao" type="button">Próxima página</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

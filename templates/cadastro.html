@@ -1,0 +1,107 @@
+{% extends 'base_instrutor.html' %}
+
+{% block titulo %}Cadastro{% endblock %}
+
+{% block conteudo %}
+<main>
+  <!--Área de cadastro-->
+  <div class="box-primaria">
+    <h1>Cadastro</h1>
+    <form action="" class="conteudo-box-primaria" method="POST">
+
+      <div class="conteudo-box-primaria-top">
+
+        <div class="conteudo-box-primaria-top-left">
+          <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="telefone">Telefone</label>
+            <input type="tel" id="telefone" name="telefone" required>
+          </div>
+          <div class="form-group">
+            <label for="telefone-emergencia">Telefone de emergência</label>
+            <input type="tel" id="telefone-emergencia" name="telefone-emergencia" required>
+          </div>
+          <div class="form-group">
+            <label for="cpf">CPF</label>
+            <input type="number" id="cpf" name="cpf" required>
+          </div>
+        </div>
+
+        <div class="conteudo-box-primaria-top-right">
+          <div class="foto-perfil">
+            <img src="../static/img/perfil.png" alt="perfil">
+          </div>
+          <label class="foto-label" for="foto-input">Adicionar Foto</label>
+          <input type="file" id="foto-input" name="foto">
+        </div>
+
+      </div>
+
+      <div class="conteudo-box-primaria-bottom">
+
+        <div class="conteudo-box-primaria-bottom-left">
+          <div class="form-group">
+            <label for="address">Rua</label>
+            <input type="text" id="address" name="address" required>
+          </div>
+          <div class="form-group">
+            <label for="number">Número</label>
+            <input type="number" id="number" name="number" required>
+          </div>
+          <div class="form-group">
+            <label for="cep">CEP</label>
+            <input type="number" id="cep" name="cep" required>
+          </div>
+          <div class="form-group">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" required>
+          </div>
+        </div>
+
+        <div class="conteudo-box-primaria-bottom-right">
+          <div class="form-group">
+            <label for="bairro">Bairro</label>
+            <input type="text" id="bairro" name="bairro" required>
+          </div>
+          <div class="form-group">
+            <label for="complemento">Complemento</label>
+            <input type="text" id="complemento" name="complemento" required>
+          </div>
+          <div class="form-group">
+            <label for="city">Cidade</label>
+            <input type="text" id="city" name="city" required>
+          </div>
+          <div class="form-group">
+            <label for="state">Estado</label>
+            <input type="text" id="state" name="state" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group-tipo">
+        <label><strong>Tipo:</strong></label>
+        <label>
+          <input type="radio" name="type" value="aluno" checked>Aluno
+        </label>
+        <label>
+          <input type="radio" name="type" value="professor">Professor
+        </label>
+      </div>
+      <br>
+
+      <div class="espaco-botao">
+        <button class="botao-secundario" class="botao" type="button" onclick='history.go(-1)'>Voltar</button>
+        <button class="botao-primario" class="botao" type="submit" onsubmit="">Salvar</button>
+      </div>
+
+    </form>
+  </div>
+</main>
+{% endblock %}

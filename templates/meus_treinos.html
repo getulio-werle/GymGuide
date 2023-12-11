@@ -1,0 +1,69 @@
+{% extends 'base_aluno.html' %}
+
+{% block titulo %}Meus Treinos{% endblock %}
+
+{% block conteudo %}
+<!-- Barra de pesquisa -->
+<div class="barra-pesquisa">
+    <input class="campo-pesquisa" type="text" placeholder="Digite o nome do treino">
+    <img class="botao-pesquisa" src="../static/img/lupa-m.png" alt="consultar">
+</div>
+
+<!-- Conteúdo principal -->
+<main>
+    <div class="box-primaria">
+        <h1>MEUS TREINOS</h1>
+        <div class="conteudo-box-primaria" id="config-conteudo-box-primaria-meus-treinos">
+            <div class="opcoes-lista-treino">
+                <h2 class="nome-lista-treino">INICIANTE</h2>
+            </div>
+            <div class="lista-treino">
+                <div class="treino">
+                    <h2>• TREINO I</h2>
+                    <ul>
+                        <li>[12]Bíceps rosca direta com barra (03x15)</li>
+                        <li>[05]Supino inclinado com barra (03x15)</li>
+                        <li>[43]Supino Reto com Halteres (03x15)</li>
+                        <li>[32]Supino reto com barra (04x12)</li>
+                        <li>[11]Barra (3x10)</li>
+                    </ul>
+                </div>
+                <div class="treino">
+                    <h2>• TREINO II</h2>
+                    <ul>
+                        <li>[12]Bíceps rosca direta com barra (03x15)</li>
+                        <li>[05]Supino inclinado com barra (03x15)</li>
+                        <li>[43]Supino Reto com Halteres (03x15)</li>
+                        <li>[32]Supino reto com barra (04x12)</li>
+                        <li>[11]Barra (3x10)</li>
+                    </ul>
+                </div>
+                <div class="treino">
+                    <h2>• TREINO III</h2>
+                    <ul>
+                        <li>[12]Bíceps rosca direta com barra (03x15)</li>
+                        <li>[05]Supino inclinado com barra (03x15)</li>
+                        <li>[43]Supino Reto com Halteres (03x15)</li>
+                        <li>[32]Supino reto com barra (04x12)</li>
+                        <li>[11]Barra (3x10)</li>
+                    </ul>
+                </div>
+                <div class="treino">
+                    <h2>• TREINO IV</h2>
+                    <ul>
+                        <li>[12]Bíceps rosca direta com barra (03x15)</li>
+                        <li>[05]Supino inclinado com barra (03x15)</li>
+                        <li>[43]Supino Reto com Halteres (03x15)</li>
+                        <li>[32]Supino reto com barra (04x12)</li>
+                        <li>[11]Barra (3x10)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="espaco-botao">
+                <button class="botao-secundario" class="botao" type="button" onclick='history.go(-1)'>Voltar</button>
+                <button class="botao-terciario" class="botao" type="button">Próxima página</button>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,1232 @@
+/* Importando as fontes */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@500&display=swap');
+
+/* Configurações gerais */
+
+/* Configuração da barra lateral */
+/* Para Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #202020 #c9c9c9;
+}
+
+/* Para Chrome, Edge, e Safari */
+*::-webkit-scrollbar {
+    width: 14px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #c9c9c9;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #202020;
+    border-radius: 20px;
+    border: 3px solid #c9c9c9;
+}
+
+/* Corpo da página */
+body {
+    padding: 0;
+    margin: 150px 0px 0px 0px;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    /* Fonte principal */
+    /* font-family: 'Bebas Neue', sans-serif; */
+    /* Fonte para títulos */
+    overflow-x: hidden;
+    background-color: #f5f5f5;
+    color: #202020;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #202020;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    width: 100vw;
+    top: 0;
+}
+
+/* Configuração dos ícones e da logo do site*/
+.icon,
+.logo {
+    width: 30px;
+    transition: 0.5s;
+}
+
+.logo:hover,
+.icon:hover {
+    width: 32px;
+    margin-left: -2px;
+    cursor: pointer;
+}
+
+/* Configuração do menu lateral */
+#menu {
+    display: flex;
+    flex-direction: column;
+    width: 0px;
+    height: 100%;
+    align-items: center;
+    background-color: #c9c9c9;
+    position: fixed;
+    overflow: hidden;
+    /* Esconde os itens do menu */
+    transition: width 0.3s;
+    top: 54px;
+    box-shadow: 0px 0px 5px black;
+}
+
+/* Configuração das opções do menu lateral */
+#menu a {
+    padding: 8px;
+    background-color: #202020;
+    text-decoration: none;
+    color: #f5f5f5;
+    border-radius: 30px;
+    width: 200px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    transition: background-color 0.3s;
+}
+
+#menu a:hover {
+    background-color: #555555;
+    cursor: pointer;
+}
+
+/* Todo o conteúdo (exceto o cabeçalho e o menu) */
+#conteudo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    transition: margin-left 0.6s;
+    margin-top: 90px;
+    margin-bottom: 50px;
+}
+
+/* Conteúdo principal */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 1000px;
+}
+
+ul {
+    padding-left: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Barra de pesquisa */
+.barra-pesquisa {
+    background-color: #202020;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: #f5f5f5;
+    height: 70px;
+    width: 850px;
+    border-radius: 50px;
+    transition: 0.3s;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-bottom: 50px;
+}
+
+.barra-pesquisa:hover {
+    background-color: #555555;
+}
+
+.barra-pesquisa .botao-pesquisa {
+    cursor: pointer;
+    height: 60%;
+    transition: 0.2s;
+}
+
+.barra-pesquisa .botao-pesquisa:hover {
+    height: 65%;
+}
+
+.barra-pesquisa .campo-pesquisa {
+    background: none;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 16px;
+    width: 75%;
+    height: 90%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Configuração do h1 de todas as páginas */
+h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    color: #202020;
+    font-size: 24px;
+    letter-spacing: 2px;
+    font-weight: normal;
+}
+
+/* Configuração do h2 de todas as páginas */
+h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    color: #f5f5f5;
+    font-size: 24px;
+    letter-spacing: 2px;
+    font-weight: normal;
+}
+
+/* Caixa que envolve os componentes 
+principais das páginas */
+.box-primaria {
+    background-color: #c9c9c9;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.box-primaria h1 {
+    text-align: center;
+}
+
+/* Configuração da disposição dos componetes dentro da caixa */
+/* Conteúdo dentro da caixa */
+.conteudo-box-primaria {
+    margin: 20px 138px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Conteúdo dentro da caixa, em cima */
+.conteudo-box-primaria-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Conteúdo dentro da caixa, em cima, à esquerda */
+.conteudo-box-primaria-top-left {
+    width: 48%;
+}
+
+/* Conteúdo dentro da caixa, em cima, à direita */
+.conteudo-box-primaria-top-right {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Conteúdo dentro da caixa, em baixo */
+.conteudo-box-primaria-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Conteúdo dentro da caixa, em baixo, à esquerda */
+.conteudo-box-primaria-bottom-left {
+    width: 48%;
+}
+
+/* Conteúdo dentro da caixa, em cima, à direita */
+.conteudo-box-primaria-bottom-right {
+    width: 48%;
+}
+
+/* Configuração de campos dos formulários */
+/* Grupo com o label e o campo correspondente */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group input {
+    border: none;
+    background: #ededed;
+    outline: none;
+    height: 25px;
+    border-radius: 3px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 15px;
+}
+
+/* Configuração dos botões */
+/* Espaço dos botões */
+.espaco-botao {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Botão definido como primário, de cor laranja */
+.botao-primario {
+    background-color: #FF7A00;
+    height: 25px;
+    width: 100px;
+    color: #f5f5f5;
+    font-weight: bold;
+    transition: 0.4s;
+    border-radius: 3px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 2%;
+}
+
+.botao-primario:hover {
+    cursor: pointer;
+    background-color: #ffa14a;
+}
+
+/* Botão definido como secundário, de cor preta */
+.botao-secundario {
+    background-color: #202020;
+    height: 25px;
+    width: 100px;
+    color: #f5f5f5;
+    font-weight: bold;
+    transition: 0.4s;
+    border-radius: 3px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    margin-right: 2%;
+}
+
+.botao-secundario:hover {
+    cursor: pointer;
+    background-color: #444444;
+}
+
+/* Botão definido como terciario, de cor branca */
+.botao-terciario {
+    background-color: #f5f5f5;
+    height: 25px;
+    width: 160px;
+    color: #202020;
+    font-weight: bold;
+    transition: 0.4s;
+    border-radius: 3px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.botao-terciario:hover {
+    background-color: #a3a3a3;
+    color: #202020;
+    cursor: pointer;
+}
+
+/* Conteúdo da página principal do instrutor */
+/* Espaço dos cartões de atalhos */
+.section-card-home {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: flex-start;
+    height: 400px;
+}
+
+/* Cartões com atalhos */
+.card-home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: #202020;
+    border-radius: 15px;
+    padding: 100px;
+    width: 250px;
+    height: 200px;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.card-home:hover {
+    width: 251px;
+    height: 201px;
+    background-color: #444444;
+}
+
+.card-home h1 {
+    color: #ffffff;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 2px;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 0px;
+    width: 100%;
+}
+
+/* Conteúdo da página principal do aluno */
+
+/* --- */
+
+/* Página de login */
+.box-formulario-login {
+    background-color: #c9c9c9;
+    border-radius: 10px;
+    width: 300px;
+    height: 260px;
+    text-align: center;
+}
+
+/* Espaço com os campos de login */
+.formulario-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 200px;
+}
+
+/* Campos de entrada de login */
+.input-login {
+    width: 215px;
+    border: none;
+    background: #ededed;
+    outline: none;
+    height: 25px;
+    border-radius: 3px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 20px;
+}
+
+/* Botão submit */
+.input-login-button {
+    background-color: #202020;
+    height: 25px;
+    width: 100px;
+    color: #f5f5f5;
+    font-weight: bold;
+    transition: 0.4s;
+    margin-top: 25px;
+    border-radius: 3px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.input-login-button:hover {
+    cursor: pointer;
+    background-color: #444444;
+}
+
+/* Página de cadastro */
+/* Configuração da foto de perfil do usuário */
+.foto-perfil img {
+    width: 172px;
+    height: 115px;
+}
+
+/* Configuração específica dos botões da página cadastro */
+.espaco-botao-cadastro {
+    text-align: center;
+}
+
+/* Estilo do botão de enviar foto de perfil */
+.foto-label {
+    background-color: #ededed;
+    height: 25px;
+    width: 120px;
+    color: #202020;
+    font-weight: bold;
+    transition: 0.4s;
+    border-radius: 3px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.foto-label:hover {
+    background-color: #797979;
+    color: #f5f5f5;
+    cursor: pointer;
+}
+
+/* Escondendo o botão original de enviar foto de perfil */
+#foto-input[type="file"] {
+    display: none;
+}
+
+/* Página meus dados */
+/* Conjunto de dos dados de vencimento e status*/
+.dados-vencimento-status {
+    text-align: center;
+}
+
+/* Configuração do texto do status do usuário */
+.status {
+    background-color: #78AA86;
+    padding: 2px 12px;
+    border-radius: 3px;
+    color: #ededed;
+    font-weight: bold;
+}
+
+/* Página de consulta de alunos */
+/* Lista que contêm os alunos */
+.lista-alunos {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Conjunto da foto de perfil do aluno 
+com o seu nome */
+.box-aluno {
+    background-color: #202020;
+    display: flex;
+    width: 100%;
+    color: #f5f5f5;
+    text-decoration: none;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    height: 100px;
+}
+
+.box-aluno:hover {
+    cursor: pointer;
+    background-color: #444444;
+}
+
+/* Configuração da foto de perfil pequena */
+.foto-perfil-p {
+    width: 80px;
+    margin-left: 50px;
+}
+
+/* Página de treinos */
+/* Nome da lista de treinos */
+.nome-lista-treino {
+    background-color: #FF7A00;
+    border-radius: 3px;
+    text-align: center;
+    padding: 2px 30px;
+    margin-top: -10px;
+}
+
+.lista-treino {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* Card de treino */
+.treino {
+    padding: 20px 30px;
+    background-color: #202020;
+    border-radius: 10px;
+    min-height: 240px;
+    width: 40%;
+    margin-bottom: 20px;
+}
+
+.treino ul {
+    margin-left: 0px;
+    padding: 0px;
+}
+
+.treino ul li {
+    color: #f5f5f5;
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+
+/* Conjunto de botões com opções de 
+editar e deletar um exercício */
+.opcoes-exercicio {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.opcoes-exercicio div {
+    margin: 0px;
+}
+
+/* Nome do exercício */
+.opcoes-exercicio li {
+    padding: 0;
+    margin: 0;
+}
+
+/* Observação do exercício */
+.opcoes-exercicio p {
+    font-size: 12px;
+    color: #c9c9c9;
+    padding: 0;
+    margin-top: -5px;
+}
+
+/* Conjunto de botões com opções de criar um exercício, 
+editar o treino/grupo muscular e delatar o treino/grupo 
+muscular */
+.botao-opcoes-group {
+    display: flex;
+}
+
+/* Botão para adicionar treino/grupo muscular e exercícios */
+.botao-adicionar {
+    background-color: #2eb855;
+    border: none;
+    height: 25px;
+    width: 25px;
+    border-radius: 3px;
+    text-align: center;
+    margin-right: 5px;
+}
+
+.botao-adicionar:hover {
+    background-color: #8bbd99;
+    cursor: pointer;
+}
+
+/* Ícone do botão de adicionar */
+.fi-rr-plus {
+    color: #f5f5f5;
+}
+
+/* Botão para editar treino/grupo muscular e exercícios */
+.botao-editar {
+    background-color: #4242ff;
+    border: none;
+    height: 25px;
+    width: 25px;
+    border-radius: 3px;
+    text-align: center;
+    margin-right: 5px;
+}
+
+.botao-editar:hover {
+    background: #5b5bff;
+    cursor: pointer;
+}
+
+/* Ícone do botão de editar */
+.fi-rr-pencil {
+    color: #f5f5f5
+}
+
+/* Botão para apagar treino/grupo muscular e exercícios */
+.botao-excluir {
+    background-color: #FF0F00;
+    border: none;
+    height: 25px;
+    width: 25px;
+    border-radius: 3px;
+    text-align: center;
+    margin-right: 5px;
+}
+
+.botao-excluir:hover {
+    background-color: #ff6358;
+    cursor: pointer;
+}
+
+/* Ícone do botão de apagar */
+.fi-rr-trash {
+    color: #f5f5f5
+}
+
+/* Conjunto: nome do treino + grupo de botões com opções */
+.opcoes-treino {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Configuração específica da página Treinos */
+/*
+#config-conteudo-box-primaria-treinos {
+    margin-bottom: 0px;
+}
+*/
+
+/* Página Meus Treinos */
+/* Configuração específica da página Meus Treinos */
+/*
+#config-conteudo-box-primaria-meus-treinos {
+    margin-bottom: 0px;
+}
+*/
+/* Conjunto do nome-lista-treino + botoes-opcoes-group */
+.opcoes-lista-treino {
+    display: flex;
+    justify-content: space-between;
+}
+
+.espaco-botao-adicionar-lista-ou-grupo-musculo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.botao-adicionar-lista-ou-grupo-musculo {
+    background-color: #2eb855;
+    border: none;
+    border-radius: 3px;
+    width: 250px;
+    height: 30px;
+    color: #f5f5f5;
+    font-weight: bold;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    transition: 0.3s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.botao-adicionar-lista-ou-grupo-musculo:hover {
+    background-color: #8bbd99;
+    cursor: pointer;
+}
+
+/* Página Exercícios */
+/* Grupo muscular contendo os seus respectivos exercícios */
+.grupo-musculo {
+    padding: 20px 30px;
+    background-color: #202020;
+    border-radius: 10px;
+    min-height: 240px;
+    margin-bottom: 20px;
+}
+
+.grupo-musculo ul {
+    margin-left: 0px;
+    padding: 0px;
+}
+
+.grupo-musculo ul li {
+    color: #f5f5f5;
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+
+/* Conjunto: nome do grupo muscular + grupo de botões com opções */
+.opcoes-grupo-musculo {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Página Dados do Usuário */
+/* Botão de bloquear usuário */
+.botao-bloquear-usuario {
+    background-color: #A00A00;
+    border-radius: 3px;
+    color: #ededed;
+    font-weight: bold;
+    border: none;
+    height: 25px;
+    width: 140px;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.botao-bloquear-usuario:hover {
+    background-color: #9e3932;
+    cursor: pointer;
+}
+
+/* Botão de excluir usuário */
+.botao-excluir-usuario {
+    background-color: #FF0F00;
+    border-radius: 3px;
+    color: #ededed;
+    font-weight: bold;
+    border: none;
+    height: 25px;
+    width: 140px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 20px;
+}
+
+.botao-excluir-usuario:hover {
+    background-color: #ff6156;
+    cursor: pointer;
+}
+
+/* Botão de atualizar pagamento do usuário */
+.botao-atualizar-pagamento-usuario {
+    background-color: #FF7A00;
+    border-radius: 3px;
+    color: #ededed;
+    font-weight: bold;
+    border: none;
+    height: 40px;
+    width: 140px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px;
+}
+
+.botao-atualizar-pagamento-usuario:hover {
+    background-color: #ffa14a;
+    cursor: pointer;
+}
+
+/* Configuração específica da disposição da lista de treinos da página Dados do Usuário */
+#conteudo-lista-treino-dados-usuario {
+    display: flex;
+    flex-direction: column;
+}
+
+/*
+#config-conteudo-box-primaria-dados-usuario {
+    margin-bottom: 0;
+}
+*/
+
+/* Página Atualizar Pagamento */
+.opcoes-atualizacao-pagamento {
+    background-color: #202020;
+    border-radius: 10px;
+    color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+.selecao-data-pagamento {
+    display: flex;
+    flex-direction: column;
+    width: 255px;
+}
+
+.selecao-data-pagamento input {
+    border: none;
+    background: #ededed;
+    outline: none;
+    height: 25px;
+    border-radius: 3px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 15px;
+}
+
+.selecao-plano {
+    display: flex;
+    flex-direction: column;
+    width: 255px;
+}
+
+.selecao-plano select {
+    border: none;
+    background: #ededed;
+    outline: none;
+    height: 25px;
+    border-radius: 3px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 15px;
+}
+
+/* Estilo quando a largura da tela for entre 768 e 1023 pixels */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+
+    #conteudo {
+        margin-top: 40px;
+    }
+
+    /* Conteúdo principal */
+    main {
+        width: 700px;
+    }
+
+    /* Barra de pesquisa */
+    .barra-pesquisa {
+        width: 600px;
+    }
+
+    .barra-pesquisa:hover {
+        height: 71px;
+        width: 601px;
+    }
+
+    /* Conteúdo da página principal do instrutor */
+    .section-card-home {
+        height: 400px;
+    }
+
+    .card-home {
+        width: 125px;
+        height: 100px;
+    }
+
+    .card-home:hover {
+        width: 126px;
+        height: 101px;
+    }
+
+    .card-home h1 {
+        font-size: 30px;
+    }
+
+    /* Página de cadastro */
+    .conteudo-box-primaria {
+        margin: 20px 100px;
+    }
+
+    /* Página de consulta de alunos */
+    /* Configuração da foto de perfil pequena */
+    .foto-perfil-p {
+        width: 80px;
+        margin-left: 50px;
+    }
+
+    /* Página de treinos */
+
+    /* Card de treino */
+    .treino {
+        padding: 20px 30px;
+        min-height: 240px;
+        width: 100%;
+    }
+
+}
+
+/* Estilo quando a largura da tela for menor que 767 pixels */
+@media screen and (max-width: 767px) {
+    * {
+        font-size: 12px;
+    }
+
+    #conteudo {
+        margin-top: 20px;
+    }
+
+    /* Conteúdo principal */
+    main {
+        width: 320px;
+    }
+
+    /* Barra de pesquisa */
+    .barra-pesquisa {
+        width: 300px;
+    }
+
+    .barra-pesquisa:hover {
+        height: 71px;
+        width: 301px;
+    }
+
+    .barra-pesquisa .campo-pesquisa {
+        font-size: 12px;
+    }
+
+    /* Conteúdo da página principal do instrutor */
+    .section-card-home {
+        align-items: center;
+        width: 100%;
+        height: 400px;
+        flex-direction: column;
+    }
+
+    .card-home {
+        width: 170px;
+        height: 50px;
+        padding: 70px;
+    }
+
+    .card-home:hover {
+        width: 171px;
+        height: 51px;
+    }
+
+    .card-home h1 {
+        font-size: 20px;
+    }
+
+    .card-home img {
+        width: 80px;
+    }
+
+    /* Página de cadastro */
+    .conteudo-box-primaria {
+        margin: 20px 20px;
+    }
+
+    .conteudo-box-primaria-top {
+        flex-direction: column-reverse;
+    }
+
+    .conteudo-box-primaria-top-left {
+        width: 100%;
+    }
+
+    .conteudo-box-primaria-top-right {
+        width: 100%;
+    }
+
+    .conteudo-box-primaria-bottom {
+        flex-direction: column-reverse;
+    }
+
+    .conteudo-box-primaria-bottom-left {
+        width: 100%;
+    }
+
+    .conteudo-box-primaria-bottom-right {
+        width: 100%;
+    }
+
+    .form-group input {
+        border: none;
+        background: #ededed;
+        outline: none;
+        height: 25px;
+        border-radius: 3px;
+        font-family: 'Montserrat', sans-serif;
+        margin-bottom: 15px;
+        padding-left: 10px;
+    }
+
+    /* Página de consulta de alunos */
+    /* Configuração da foto de perfil pequena */
+    .foto-perfil-p {
+        margin-left: 30px;
+    }
+
+    /* Página de treinos */
+
+    /* Card de treino */
+    .treino {
+        padding: 20px 20px;
+        width: 100%;
+    }
+
+    .botao-adicionar:hover {
+        background-color: #8bbd99;
+        cursor: pointer;
+    }
+
+    .opcoes-treino {
+        flex-direction: column-reverse;
+    }
+
+}
+
+.fundo-modal {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #00000080;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Estilização dos modais (Pop-ups) */
+.modal {
+    border: none;
+    border-radius: 10px;
+    background-color: #c9c9c9;
+    animation: animate;
+    animation-duration: 0.7s;
+    position: fixed;
+}
+
+/* Ícone de "X" presentes nos modais da página inicial */
+.icone-fechar-modal {
+    position: absolute;
+    left: 85%;
+}
+
+.icone-fechar-modal:hover {
+    cursor: pointer;
+}
+
+/* Título dos modais */
+.titulo-modal {
+    color: #202020;
+}
+
+/* Modal de mostrar informações do usuário */
+#modal-usuario {
+    min-width: 185px;
+    height: 150px;
+}
+
+#titulo-modal-usuario {
+    margin-bottom: 0px;
+}
+
+#botao-sair-modal-usuario {
+    width: 50px;
+    font-size: 12px;
+}
+
+#botao-editar-perfil-modal-usuario {
+    width: 100px;
+    font-size: 12px;
+}
+
+/* Modal de mostrar informações de contato */
+#modal-contato {
+    min-width: 185px;
+}
+
+#link-instagram-modal-contato {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #202020;
+    width: 100%;
+}
+
+/* Modal Sobre */
+#modal-sobre {
+    max-width: 300px;
+}
+
+/* Modal adicionar lista de treino */
+/* Espaço dos botões com as opcões de adicionar
+uma nova lista de treino ou escolher uma já existente */
+#espaco-botao-opcoes-modal-adicionar-lista-treino {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Botões com as opcões de adicionar
+uma nova lista de treino ou escolher uma já existente */
+#espaco-botao-opcoes-modal-adicionar-lista-treino .botao-secundario {
+    height: 60px;
+    margin: 0px;
+    width: 100px;
+}
+
+#modal-adicionar-lista-treino .espaco-botao {
+    justify-content: center;
+}
+
+/* Modal adicionar lista de treino já existente */
+/* Área de seleção da lista de treino */
+#formulario-modal-adicionar-lista-treino-existente {
+    display: flex;
+    flex-direction: column;
+    width: 255px;
+}
+
+/* Fomulário do modal Adicionar Lista Treino Existente */
+#formulario-modal-adicionar-lista-treino-existente select {
+    border: none;
+    background: #ededed;
+    outline: none;
+    height: 25px;
+    border-radius: 3px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 15px;
+}
+
+/* Modal adicionar nova lista de treino */
+/* --- */
+
+/* Modal adicionar e editar exercício */
+/* Espaço do label e input */
+.formulario-modal div {
+    display: flex;
+    justify-content: space-between;
+    width: 270px;
+}
+
+/* Campo tipo select dos modais */
+.formulario-modal select {
+    border: none;
+    background: #ededed;
+    outline: none;
+    height: 25px;
+    border-radius: 3px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 15px;
+    width: 160px;
+}
+
+/* Campo tipo input dos modais */
+.formulario-modal input {
+    border: none;
+    background: #ededed;
+    outline: none;
+    height: 25px;
+    border-radius: 3px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 15px;
+}
+
+/* Modais Pergunta para Excluir e Bloquear Usuário*/
+.titulo-modal-pergunta-excluir-bloquear-usuario {
+    margin: 0 0 0 3px;
+}
+
+.conjunto-titulo-modal-pergunta-excluir-bloquear-usuario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal Pergunta para Excluir */
+#botao-excluir-modal-pergunta-excluir {
+    background-color: #FF0F00;
+}
+
+#botao-excluir-modal-pergunta-excluir:hover {
+    background-color: #FF6358;
+}
+
+
+/* Modal Pergunta para Bloquear Usuário */
+#botao-bloquear-usuario-modal-pergunta-bloquear-usuario {
+    background-color: #A00A00;
+}
+
+#botao-bloquear-usuario-modal-pergunta-bloquear-usuario:hover {
+    background-color: #9e3932;
+}
+
+/* Modal Adicionar Grupo Musculo */
+/* --- */
+
+/* Modal Adicionar Exercício Genérico */
+/* Adiciona o exercício no grupo muscular (na lista de exercícios) */
+/* --- */
+
+/* Escurece o fundo quando abre os modais */
+dialog::backdrop {
+    background-color: rgb(0 0 0 / .8);
+}
+
+/* Configurando a animação dos modais */
+@keyframes animate {
+    from {
+        opacity: 1;
+    }
+
+    from {
+        opacity: 0;
+    }
+}

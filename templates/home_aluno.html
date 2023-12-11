@@ -1,0 +1,27 @@
+{% extends 'base_aluno.html' %}
+
+{% block titulo %}Home{% endblock %}
+
+{% block conteudo %}
+<!-- Barra de pesquisa -->
+<div class="barra-pesquisa">
+    <input class="campo-pesquisa" type="text" placeholder="O que deseja pesquisar?">
+    <img class="botao-pesquisa" src="../static/img/lupa-m.png" alt="consultar">
+</div>
+
+<!-- Conteúdo principal -->
+<main>
+    <h1>TREINO DO DIA</h1>
+    <!-- Card de treino do dia -->
+    <div class="treino">
+        <h2>TREINO II</h2>
+        <ul>
+            <li>[12]Bíceps rosca direta com barra (03x15)</li>
+            <li>[05]Supino inclinado com barra (03x15)</li>
+            <li>[43]Supino Reto com Halteres (03x15)</li>
+            <li>[32]Supino reto com barra (04x12)</li>
+            <li>[11]Barra (3x10)</li>
+        </ul>
+    </div>
+</main>
+{% endblock %}

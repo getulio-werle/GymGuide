@@ -1,0 +1,33 @@
+{% extends 'base_instrutor.html' %}
+
+{% block titulo %}Treinos{% endblock %}
+
+{% block conteudo %}
+<!-- Barra de pesquisa -->
+<div class="barra-pesquisa">
+    <input class="campo-pesquisa" type="text" placeholder="Digite o nome do treino">
+    <img class="botao-pesquisa" src="../static/img/lupa-m.png" alt="consultar">
+</div>
+
+<!-- Conteúdo principal -->
+<main>
+    <div class="box-primaria">
+        <h1>LISTA DE TREINOS</h1>
+        <div class="conteudo-box-primaria" id="config-conteudo-box-primaria-treinos">
+            <ul id="lista-lista_treinos">
+                
+            </ul>
+            <div class="espaco-botao-adicionar-lista-ou-grupo-musculo">
+                <a href="/treinos/adicionar/lista_treinos"><button class="botao-adicionar-lista-ou-grupo-musculo"
+                    onclick="openModal('#modal-adicionar-lista-treino')"><i class="fi fi-rr-plus"></i>Nova lista
+                    de
+                    treinos</button></a>
+            </div>
+            <div class="espaco-botao">
+                <button class="botao-secundario" class="botao" type="button" onclick='history.go(-1)'>Voltar</button>
+                <button class="botao-terciario" class="botao" type="button">Próxima página</button>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
