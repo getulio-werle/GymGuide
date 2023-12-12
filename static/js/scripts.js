@@ -1,6 +1,8 @@
+/* Obtêm o endereço e a porta da API definidos no header */
 var apiHost = document.querySelector('meta[name="api-host"]').getAttribute('content')
 var apiPort = document.querySelector('meta[name="api-port"]').getAttribute('content')
 
+/* Função para buscar exercícios da API */
 async function fetchExercicios(codGrupoMusculo) {
     try {
         const response = await fetch(apiHost + ':' + apiPort + `/exercicio_generico/por_grupo_musculo/${codGrupoMusculo}`);
@@ -12,6 +14,7 @@ async function fetchExercicios(codGrupoMusculo) {
     }
 }
 
+/* Função para buscar grupos musculares da API */
 async function fetchGruposMusculares() {
     try {
         const response = await fetch(apiHost + ':' + apiPort + '/grupo_musculo');
@@ -23,6 +26,9 @@ async function fetchGruposMusculares() {
     }
 }
 
+/* Função para montar os dados obtidos nas funções "fetchGruposMusculares" e "fetchExercicios" */
+/* Foram utilizadas funções assíncronas para carregar o conteúdo, pois funções normais (sícronas)
+não estavam funcionando bem, exercícios apareciam em outros grupos musculares, por exemplo. */
 async function exibirGruposMusculares() {
     try {
         const gruposMusculares = await fetchGruposMusculares();
@@ -81,7 +87,9 @@ async function exibirGruposMusculares() {
     }
 }
 
+/* Chama a função após a página ser completamente carregada */
 document.addEventListener("DOMContentLoaded", function () {
+    /* A função só é executada na rota /exercicios */
     if (window.location.pathname === '/exercicios') {
         exibirGruposMusculares();
     }
@@ -122,6 +130,7 @@ function ordenarGrupoMusculo() {
     });
 }
 
+/* Função para buscar registros de exercicios cadastrados em treinos na API */
 async function fetchExerciciosTreinos(cod_treino) {
     try {
         const response = await fetch(apiHost + ':' + apiPort + `/exercicio_treino/por_treino/${cod_treino}`);
@@ -133,6 +142,7 @@ async function fetchExerciciosTreinos(cod_treino) {
     }
 }
 
+/* Função para buscar treinos na API */
 async function fetchTreinos(cod_lista_treinos) {
     try {
         const response = await fetch(apiHost + ':' + apiPort + `/treino/por_lista_treinos/${cod_lista_treinos}`);
@@ -144,6 +154,7 @@ async function fetchTreinos(cod_lista_treinos) {
     }
 }
 
+/* Função para buscar listas de treinos na API */
 async function fetchListasTreinos() {
     try {
         const response = await fetch(apiHost + ':' + apiPort + '/lista_treinos');
@@ -155,6 +166,7 @@ async function fetchListasTreinos() {
     }
 }
 
+/* Função para montar as Listas de treinos, Treinos e Exercícios */
 async function exibirListaTreinos() {
     try {
 
@@ -162,8 +174,6 @@ async function exibirListaTreinos() {
         const lista_lista_treinos = document.querySelector('ul#lista-lista_treinos');     // Tag que reúne todas as "Listas de Treinos"
 
         for (const lista_treinos of listas_treinos) {
-
-            //const ulId = `lista-exercicio-generico-${grupoMuscular.cod_grupo_musculo}`;
             lista_lista_treinos.innerHTML +=
                 `   
                 <div class="opcoes-lista-treino">
@@ -207,7 +217,7 @@ async function exibirListaTreinos() {
                 const treino = document.querySelector(`#lista-exercicio-treino-${um_treino.cod_treino}`);    // Tag que reúne todos os exercícios de cada "Treino"
 
                 for (const exercicio_treino of exercicios_treinos) {
-                    if (exercicio_treino.observacao == null) {exercicio_treino.observacao = ''}
+                    if (exercicio_treino.observacao == null) {exercicio_treino.observacao = ''} /* Caso o exercício não tenha observações, não é exibido "null" */
                     if (exercicio_treino.aparelho != null) {
                         if (exercicio_treino.series != null || exercicio_treino.repeticoes != null) {
                             treino.innerHTML +=
@@ -278,8 +288,9 @@ async function exibirListaTreinos() {
     }
 }
 
-
+/* A função só é executada após a página ser carregada */
 document.addEventListener("DOMContentLoaded", function () {
+    /* A função funciona apenas na rota /treinos */
     if (window.location.pathname === '/treinos') {
         exibirListaTreinos();
     }

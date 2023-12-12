@@ -3,7 +3,6 @@ from flask import jsonify, request, render_template, redirect
 from config import Config
 import requests
 
-
 app = Flask(__name__, template_folder='templates')
 app.config.from_object(Config)
 
@@ -72,11 +71,13 @@ def abrirTreinos():
 @app.route('/exercicios/adicionar/exercicio_generico/<int:id>', methods=['GET', 'POST'])
 def adicionarExercicioGenerico(id):
     if request.method == 'GET':
+        # Obtêm dados da API e repassa para a página
         url = f"http://localhost:8080/grupo_musculo/{id}"
         grupo_musculo = requests.get(url)
         grupo_musculo = grupo_musculo.json()
         return render_template('exercicios.html', grupo_musculo_para_adicionar_exercicio=grupo_musculo, operacao='adicionar')
     else:
+        # Obtêm dados da página e repassa para a API
         nome = request.form.get("nome-exercicio-generico-adicionar")
         aparelho = request.form.get("aparelho-exercicio-generico-adicionar")
         cod_grupo_musculo = request.form.get("cod-grupo-musculo-exercicio-generico-adicionar")
@@ -102,12 +103,14 @@ def adicionarExercicioGenerico(id):
 # Editar exercicio_generico
 @app.route('/exercicios/editar/exercicio_generico/<int:id>', methods=['GET', 'POST'])
 def editarExercicioGenerico(id):
+    # Obtêm dados da API e repassa para a página
     if request.method == 'GET':
         url = f'http://localhost:8080/exercicio_generico/{id}'
         exercicio_generico = requests.get(url)
         exercicio_generico = exercicio_generico.json()
         return render_template('exercicios.html', exercicio_generico=exercicio_generico, operacao='editar')
     else:
+        # Obtêm dados da página e repassa para a API
         aparelho = request.form.get('aparelho-exercicio-generico-editar')
         nome = request.form.get('nome-exercicio-generico-editar')
         cod_grupo_musculo = request.form.get('cod-grupo-musculo-exercicio-generico-editar')
@@ -120,7 +123,6 @@ def editarExercicioGenerico(id):
         else:
             cod_grupo_musculo = int(cod_grupo_musculo)
             
-
         exercicio_generico = {
             'aparelho': aparelho,
             'nome': nome,
@@ -152,6 +154,7 @@ def adicionarGrupoMusculo():
     if request.method == 'GET':
         return render_template('exercicios.html', grupo_musculo=1 ,operacao='adicionar')
     else:
+        # Obtêm dados da página e repassa para a API
         nome = request.form.get('nome-grupo-musculo-adicionar')
         grupo_musculo = {
             'nome': nome
@@ -165,12 +168,14 @@ def adicionarGrupoMusculo():
 # Abrir editar grupo_musculo
 @app.route('/exercicios/confirmacao-editar/grupo_musculo/<int:id>', methods=['GET', 'POST'])
 def editarGrupoMusculo(id):
+    # Obtêm dados da API e repassa para a página
     if request.method == 'GET':
         url = f"http://localhost:8080/grupo_musculo/{id}"
         grupo_musculo = requests.get(url)
         grupo_musculo = grupo_musculo.json()
         return render_template('exercicios.html', grupo_musculo=grupo_musculo, operacao='editar')
     else:
+        # Obtêm dados da página e repassa para a API
         nome = request.form.get("nome-grupo-musculo-editar")
         grupo_musculo = {
             'nome': nome
@@ -196,6 +201,7 @@ def excluirGrupoMusculo(id):
     return redirect('/exercicios')
 
 # Abrir modal adicionar lista_treinos
+# Neste modal há a opção de se escolher as entre "Adicionar uma lista de treino já existente" ou "Adicionar uma nova lista de treino"
 @app.route('/treinos/adicionar/lista_treinos')
 def abrirModalAdicionarListaTreinos():
     return render_template('treinos.html', lista_treinos=1, operacao='adicionar')
@@ -203,12 +209,14 @@ def abrirModalAdicionarListaTreinos():
 # Abrir modal adicionar lista_treinos já existente
 @app.route('/treinos/adicionar/lista_treinos/existente', methods=['GET','POST'])
 def adicionarListaTreinosExistente():
+    # Obtêm dados da API e repassa para a página
     if request.method == 'GET':
         url = 'http://localhost:8080/lista_treinos'
         listas_treinos = requests.get(url)
         listas_treinos = listas_treinos.json()
         return render_template('treinos.html', lista_treinos=1, operacao='adicionar-existente', listas_treinos=listas_treinos)
     else:
+        # Obtêm dados da página e repassa para a API
         cod_lista_treinos_selecionada = request.form.get('lista-treino-existente-adicionar-lista-treino')
         # Pega os dados completos da lista de treinos
         url = f'http://localhost:8080/lista_treinos/{cod_lista_treinos_selecionada}'
@@ -226,6 +234,7 @@ def adicionarListaTreinosNova():
     if request.method == 'GET':
         return render_template('treinos.html', lista_treinos=1, operacao='adicionar-nova')
     else:
+        # Obtêm dados da página e repassa para a API
         nome = request.form.get('lista-treino-adicionar-lista-treino-nova')
         lista_treinos = {
             'nome': nome,
@@ -239,12 +248,14 @@ def adicionarListaTreinosNova():
 # Editar lista_treinos
 @app.route('/treinos/editar/lista_treinos/<int:id>', methods=['GET', 'POST'])
 def editarListaTreinos(id):
+    # Obtêm dados da API e repassa para a página
     if request.method == 'GET':
         url = f'http://localhost:8080/lista_treinos/{id}'
         lista_treinos = requests.get(url)
         lista_treinos = lista_treinos.json()
         return render_template('treinos.html', lista_treinos=lista_treinos, operacao='editar')
     else:
+        # Obtêm dados da página e repassa para a API
         nome = request.form.get('nome-editar-lista-treinos')
         lista_treinos = {
             'nome': nome,
@@ -276,6 +287,7 @@ def adicionarTreino(cod_lista_treinos):
     if request.method == 'GET':
         return render_template('treinos.html', treino=1, operacao='adicionar')
     else:
+        # Obtêm dados da página e repassa para a API
         nome = request.form.get('nome-treino-adicionar-treino')
         treino = {
             'nome': nome,
@@ -289,12 +301,14 @@ def adicionarTreino(cod_lista_treinos):
 # Editar treino
 @app.route('/treinos/editar/treino/<int:id>', methods=['GET', 'POST'])
 def editarTreino(id):
+    # Obtêm dados da API e repassa para a página
     if request.method == 'GET':
         url = f'http://localhost:8080/treino/{id}'
         treino = requests.get(url)
         treino = treino.json()
         return render_template('treinos.html', treino=treino, operacao='editar')
     else:
+        # Obtêm dados da página e repassa para a API
         nome = request.form.get('nome-treino-editar-treino')
         treino = {
             'nome': nome
@@ -322,6 +336,7 @@ def excluirTreino(id):
 # Adicionar exercicio_treino
 @app.route('/treinos/adicionar/exercicio_treino/<int:cod_treino>', methods=['GET', 'POST'])
 def adicionarExercicioTreino(cod_treino):
+    # Obtêm dados da API e repassa para a página
     if request.method == 'GET':
         # Obter os grupos musculares
         url = 'http://localhost:8080/grupo_musculo'
@@ -335,6 +350,7 @@ def adicionarExercicioTreino(cod_treino):
                                exercicios_genericos=exercicios_genericos, 
                                exercicio_treino=1, operacao='adicionar')
     else:
+        # Obtêm dados da página e repassa para a API
         cod_exercicio = request.form.get('exercicio-generico-adicionar-exercicio-treino')
         series = request.form.get('series-adicionar-exercicio-treino')
         repeticoes = request.form.get('repeticoes-adicionar-exercicio-treino')
@@ -367,6 +383,7 @@ def adicionarExercicioTreino(cod_treino):
 # Editar exercicio_treino
 @app.route('/treinos/editar/exercicio_treino/<int:id>', methods=['GET', 'POST'])
 def editarExercicioTreino(id):
+    # Obtêm dados da API e repassa para a página
     if request.method == 'GET':
         # Obter o exercicio_treino
         url = f'http://localhost:8080/exercicio_treino/{id}'
@@ -386,6 +403,7 @@ def editarExercicioTreino(id):
                                exercicio_generico_editar_exercicio_treino=exercicio_generico, grupo_musculo_editar_exercicio_treino=grupo_musculo,
                                 operacao='editar')
     else:
+        # Obtêm dados da página e repassa para a API
         cod_exercicio = request.form.get('exercicio-generico-editar-exercicio-treino')
         series = request.form.get('series-editar-exercicio-treino')
         repeticoes = request.form.get('repeticoes-editar-exercicio-treino')
@@ -420,7 +438,6 @@ def abrirModalExcluirExercicioTreino(id):
     url = f"http://localhost:8080/exercicio_treino/{id}"
     exercicio_treino = requests.get(url)
     exercicio_treino = exercicio_treino.json()
-    print(exercicio_treino)
     # Busca do nome do cod_exercicio do exercicio_treino
     url = f"http://localhost:8080/exercicio_generico/{exercicio_treino['cod_exercicio']}"
     exercicio_generico = requests.get(url)
@@ -435,7 +452,5 @@ def excluirExercicioTreino(id):
     requests.delete(url)
     return redirect('/treinos')
 
-
-
 if __name__ == "__main__": 
-     app.run(port = app.config['APP_PORT'])
+     app.run(port = app.config['APP_PORT']) # Porta definida no arquivo de configurações

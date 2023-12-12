@@ -5,7 +5,7 @@ from flask import jsonify, request
 # Importando o arquivo de configuração
 from config import conexao_BD1
 
-import psycopg2 # para BD Postgres
+import psycopg2 # driver para BD Postgres
 from flask_cors import CORS
 
 # Criando a aplicação
@@ -55,7 +55,7 @@ def obterTodosGrupoMusculo():
         }
         registros_json.append(registro_json)
     response = jsonify(registros_json)
-    # response.headers.add('Access-Control-Allow-Origin', 'http://localhost:8081')
+
     return response
 
 # READ grupo_musculo (único)
@@ -146,6 +146,7 @@ def obterExercicioGenericoPorGrupoMusculo(cod_grupo_musculo):
     if registro_grupo_musculo is None:
         return jsonify({'mensagem': 'Grupo muscular não encontrado.'}), 404
 
+    # Consulta os exercícios que estejam conectados ao grupo muscular
     cursor.execute('SELECT * FROM V_Exercicio_generico WHERE cod_grupo_musculo = %s', (cod_grupo_musculo, ))
 
     if cursor.rowcount == 0:
@@ -635,6 +636,7 @@ def obterExercicioTreinoPorTreino(cod_treino):
     if registro_usuario is None:
         return jsonify({'mensagem': 'Treino não encontrado.'}), 404
 
+    # Consulta para retornar os dados completos do exercicio_treino
     cursor.execute("""SELECT eg.aparelho, gm.nome as nome_grupo_musculo, eg.nome, et.*
         FROM Exercicio_treino AS et 
         INNER JOIN Exercicio_generico AS eg
@@ -741,4 +743,4 @@ def excluirExercicioTreino(cod_exercicio_treino):
     return jsonify({'mensagem': 'Exercício excluído com sucesso.'}), 200
 
 if __name__ == '__main__':
-    api.run(port=api.config['API_PORT'])
+    api.run(port=api.config['API_PORT'])    # Porta definida no arquivo de configurações
